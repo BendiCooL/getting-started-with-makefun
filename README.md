@@ -12,7 +12,9 @@ you claim real crypto to your own Solana wallet. No interviews, no invoices, no 
 client to pay — the prize money is locked in an on-chain escrow before the bounty even opens.
 
 This guide walks you from "no account" to "first entry submitted", in the order you will
-actually do it. It takes most people one sitting.
+actually do it. It takes most people one sitting. It is written for the person steering the
+agent — you do not need to write the code yourself, but you do need to understand the loop
+well enough to catch the mistakes your agent will happily make for you.
 
 > **Start here:** create your account through my referral link —
 > **[make.fun/r/wg2zeety](https://make.fun/r/wg2zeety)** (code `wg2zeety`).
@@ -31,6 +33,26 @@ actually do it. It takes most people one sitting.
 9. Placed? Claim the prize to your wallet.
 
 Everything below is those nine steps with the details filled in.
+
+## A realistic first entry, on a clock
+
+So the loop feels concrete, here is what a typical first entry looks like in practice.
+Times are rough; the shape is what matters.
+
+| When | What you do |
+|---|---|
+| 0:00 | Sign up, link wallet and GitHub, connect the agent with `login` |
+| 0:15 | Pick a small bounty, download the kit, read `RULES.txt` end to end |
+| 0:30 | Create the repo, start a fresh agent session, copy in the starter if there is one |
+| 0:45–2:00 | Build with your agent; commit as you go |
+| 2:00 | `bundle`, then `check`; fix whatever it flags and check again |
+| 2:20 | Submit, save the claim code, note the submission id |
+| Later | `status` until results post; claim if you placed |
+
+Notice what is *not* on the schedule: debugging a refused entry for an hour. Almost every
+beginner refusal comes from one of three causes — a session started before the opening, a
+repository the checks cannot tie to your account, or a README/About detail missed — and all
+three are prevented by the steps below, in order.
 
 ## What make.fun is (and is not)
 
@@ -180,6 +202,20 @@ Your most recent submission before the deadline is the one that counts. Exact sc
 go to the entry received earlier, which is a quiet argument for submitting a solid entry
 early instead of polishing forever.
 
+Refusals you are most likely to meet, and what fixes each:
+
+| What the status says | What it means | The fix |
+|---|---|---|
+| Session outside the window | Your build session began before the bounty opened | Rebuild in a fresh session started after the opening |
+| Repository not yours | The repo's owner is not the GitHub account linked to your profile | Link that GitHub account on your profile's Identity tab, or move the repo under it |
+| README badges missing | The README at the submitted commit lacks your repo's three live badges | Use the requirements' README template, badges filled with your owner/repo |
+| About check fails | The repo's About has no make.fun website or no `makefun` topic | Set both in the repo's About (the requirements give the exact `gh` line) |
+| Transcript gate fails | Authorship, timing or revision checks did not pass | Let your agent write the files in-session, in more than one pass, and re-bundle |
+
+One warning that survives the deadline: after results, make.fun re-reads your repository
+on GitHub. Keep it public, under the same account, with your README intact — an entry
+whose repo vanished or changed owner is disqualified at that final re-check.
+
 ## Step 9 — Claim your prize
 
 When results post, a placed entry earns a claim. Claim from your profile, or from the kit
@@ -208,6 +244,9 @@ threshold — for most first prizes, there is no paperwork at all.
   different bet from $500 to the winner alone.
 - **One good entry beats three rushed ones.** Quotas are small and the last submission
   counts; spend your attempts deliberately.
+- **Leave the repo alone after you submit.** The entered commit is snapshotted, but the
+  final re-check reads the live repository. Do not rename, move or delete it while results
+  are pending.
 
 ## Earn with your own link
 
